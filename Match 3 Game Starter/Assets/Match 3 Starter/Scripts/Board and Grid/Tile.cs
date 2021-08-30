@@ -49,5 +49,42 @@ public class Tile : MonoBehaviour {
 		render.color = Color.white;
 		previousSelected = null;
 	}
+	void OnMouseDown()
+	{
+		// 1
+		if (render.sprite == null || BoardManager.instance.IsShifting)
+		{
+			return;
+		}
+
+		if (isSelected)
+		{ // 2 Is it already selected?
+			Deselect();
+		}
+		else
+		{
+			if (previousSelected == null)
+			{ // 3 Is it the first tile selected?
+				Select();
+			}
+			else
+			{
+				previousSelected.Deselect(); // 4
+			}
+		}
+	}
+	public void SwapSprite(SpriteRenderer render2)
+	{ // 1
+		if (render.sprite == render2.sprite)
+		{ // 2
+			return;
+		}
+
+		Sprite tempSprite = render2.sprite; // 3
+		render2.sprite = render.sprite; // 4
+		render.sprite = tempSprite; // 5
+		SFXManager.instance.PlaySFX(Clip.Swap); // 6
+	}
+
 
 }
