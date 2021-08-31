@@ -47,6 +47,12 @@ public class BoardManager : MonoBehaviour {
         float startX = transform.position.x;
 		float startY = transform.position.y;
 
+
+		//add
+		Sprite[] previousLeft = new Sprite[ySize];
+		Sprite previousBelow = null;
+
+
 		for (int x = 0; x < xSize; x++) {
 			for (int y = 0; y < ySize; y++) {
 
@@ -57,9 +63,21 @@ public class BoardManager : MonoBehaviour {
 
 				newTile.transform.parent = transform; // 1
 
-				Sprite newSprite = characters[Random.Range(0, characters.Count)]; // 2
+				//add
+				List<Sprite> possibleCharacters = new List<Sprite>(); // 1
+				possibleCharacters.AddRange(characters); // 2
+                possibleCharacters.Remove(previousLeft[y]); // 3
+				possibleCharacters.Remove(previousBelow);
+
+
+				Sprite newSprite = possibleCharacters[Random.Range(0, possibleCharacters.Count)];
+
+			//	Sprite newSprite = characters[Random.Range(0, characters.Count)]; // 2
 				newTile.GetComponent<SpriteRenderer>().sprite = newSprite; // 3
-                }
+				previousLeft[y] = newSprite;
+				previousBelow = newSprite;
+
+			}
 		}
     }
 	public IEnumerator FindNullTiles()
