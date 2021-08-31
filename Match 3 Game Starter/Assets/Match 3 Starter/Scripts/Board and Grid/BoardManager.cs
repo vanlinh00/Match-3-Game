@@ -76,7 +76,7 @@ public class BoardManager : MonoBehaviour {
 			}
 		}
 
-		// giúp nó Clear hết chư không chỉ clean ở cái nút mà mình di chuển sau nó match thoio
+		// giúp nó Clear hết chư không chỉ clear ở cái nút mà mình di chuển sau nó match thoio
 		for (int x = 0; x < xSize; x++)
 		{
 			for (int y = 0; y < ySize; y++)
@@ -104,6 +104,8 @@ public class BoardManager : MonoBehaviour {
 
 		for (int i = 0; i < nullCount; i++)
 		{ // 3
+			GUIManager.instance.Score += 50;
+
 			yield return new WaitForSeconds(shiftDelay);// 4
 			for (int k = 0; k < renders.Count - 1; k++)
 			{ // 5

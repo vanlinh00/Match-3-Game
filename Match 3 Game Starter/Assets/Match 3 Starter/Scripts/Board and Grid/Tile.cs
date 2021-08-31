@@ -160,6 +160,7 @@ public class Tile : MonoBehaviour {
 			matchFound = false;
 			StopCoroutine(BoardManager.instance.FindNullTiles());
 			StartCoroutine(BoardManager.instance.FindNullTiles());
+			GUIManager.instance.MoveCounter--;
 
 			SFXManager.instance.PlaySFX(Clip.Clear);
 		}
