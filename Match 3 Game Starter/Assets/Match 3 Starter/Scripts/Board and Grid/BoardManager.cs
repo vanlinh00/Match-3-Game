@@ -1,24 +1,4 @@
-﻿/*
- * Copyright (c) 2017 Razeware LLC
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- * 
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
+﻿
 
 using UnityEngine;
 using System.Collections;
@@ -30,7 +10,7 @@ public class BoardManager : MonoBehaviour {
 	public GameObject tile;
 	public int xSize, ySize;
 
-	private GameObject[,] tiles;
+	private GameObject[,] tiles; //tạo 1 mạng 2D tile nữa làm gì chỉ biết
 
 	public bool IsShifting { get; set; }
 
@@ -59,7 +39,7 @@ public class BoardManager : MonoBehaviour {
 
 
 				GameObject newTile = Instantiate(tile, new Vector3(startX + (xOffset * x), startY + (yOffset * y), 0), tile.transform.rotation);
-				tiles[x, y] = newTile;
+				tiles[x, y] = newTile;      //
 
 				newTile.transform.parent = transform; // 1
 
@@ -94,7 +74,7 @@ public class BoardManager : MonoBehaviour {
 			}
 		}
 
-		// giúp nó Clear hết chư không chỉ clear ở cái nút mà mình di chuển sau nó match thoio
+		// giúp nó Clear hết chư không chỉ clear ở cái nút mà mình di chuển sau nó match thôi
 		for (int x = 0; x < xSize; x++)
 		{
 			for (int y = 0; y < ySize; y++)
@@ -111,7 +91,8 @@ public class BoardManager : MonoBehaviour {
 		int nullCount = 0;
 
 		for (int y = yStart; y < ySize; y++)
-		{  // 1
+		{ 
+			// 1
 			SpriteRenderer render = tiles[x, y].GetComponent<SpriteRenderer>();
 			if (render.sprite == null)
 			{ // 2
